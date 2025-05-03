@@ -1,0 +1,24 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "gcc build", // Must match "preLaunchTask" in launch.json
+			"type": "shell",
+			"command": "gcc",
+			"args": [
+				"-g", // Debug symbols
+				"${file}", // Current file
+				"-o", // Output flag
+				"${fileDirname}/${fileBasenameNoExtension}.exe" // Output file
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		}
+	]
+}
