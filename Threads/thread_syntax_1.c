@@ -1,25 +1,35 @@
 #include <pthread.h>
 #include <stdio.h>
 
-// Thread function prototype
-void *thread_function(void *arg);
+int a;
+int b;
+int result;
+
+// Thread function definition
+void *mul(void *arg)
+{
+    result = a * b;
+    printf("Inside thread\n");
+    pthread_exit(NULL);
+}
 
 int main()
 {
     pthread_t thread_id;
 
+    printf("Enter first number: ");
+    scanf("%d", &a);
+
+    printf("Enter second number: ");
+    scanf("%d", &b);
+
     // Create a thread
-    pthread_create(&thread_id, NULL, thread_function, NULL);
+    pthread_create(&thread_id, NULL, mul, NULL);
 
     // Wait for the thread to finish
     pthread_join(thread_id, NULL);
 
-    return 0;
-}
+    printf("%d \n", result);
 
-// Thread function definition
-void *thread_function(void *arg)
-{
-    printf("Inside thread\n");
-    pthread_exit(NULL);
+    return 0;
 }
